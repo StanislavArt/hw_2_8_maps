@@ -1,21 +1,25 @@
-package pro.sky.java.course2.lists.service;
+package pro.sky.java.course2.maps.service;
 
 import org.springframework.stereotype.Service;
-import pro.sky.java.course2.lists.Employee;
+import pro.sky.java.course2.maps.Employee;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private List<Employee> employees;
+    private final Map<String, Employee> employees;
 
     public EmployeeServiceImpl() {
-        this.employees = new ArrayList<>(List.of(
+        this.employees = new HashMap<>(Map.of(
+                "Станислав Лем",
                 new Employee("Станислав", "Лем"),
+                "Борис Стругацкий",
                 new Employee("Борис", "Стругацкий"),
+                "Роберт Шекли",
                 new Employee("Роберт", "Шекли"),
+                "Стивен Кинг",
                 new Employee("Стивен", "Кинг"),
+                "Эдгар Берроуз",
                 new Employee("Эдгар", "Берроуз")
         ));
     }
@@ -25,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (findEmployee(firstName, lastName) != null) {
             throw new EmployeeAlreadyAddedException();
         }
-        employees.add(new Employee(firstName, lastName));
+        employees.put(firstName + " " + lastName, new Employee(firstName, lastName));
     }
 
     @Override
@@ -34,21 +38,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         if ( employee == null) {
             throw new EmployeeNotFoundException();
         }
-        employees.remove(employee);
+        employees.remove(firstName + " " + lastName);
     }
 
     @Override
     public Employee findEmployee(String firstName, String lastName) {
-        for (Employee employee:employees) {
-            if (firstName.equals(employee.getFirstName()) && lastName.equals(employee.getLastName())) {
-                return employee;
-            }
-        }
-        return null;
+        return employees.get(firstName + " " + lastName);
     }
 
     @Override
-    public List<Employee> getEmployees() {
+    public Map<String, Employee> getEmployees() {
         return employees;
     }
 }

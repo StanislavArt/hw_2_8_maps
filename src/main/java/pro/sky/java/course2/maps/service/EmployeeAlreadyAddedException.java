@@ -1,4 +1,4 @@
-package pro.sky.java.course2.lists.service;
+package pro.sky.java.course2.maps.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
