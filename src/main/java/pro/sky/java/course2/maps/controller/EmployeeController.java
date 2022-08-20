@@ -1,11 +1,12 @@
-package pro.sky.java.course2.lists.controller;
+package pro.sky.java.course2.maps.controller;
 
 import org.springframework.web.bind.annotation.*;
-import pro.sky.java.course2.lists.Employee;
-import pro.sky.java.course2.lists.service.EmployeeNotFoundException;
-import pro.sky.java.course2.lists.service.EmployeeService;
-import pro.sky.java.course2.lists.service.ServiceException;
+import pro.sky.java.course2.maps.Employee;
+import pro.sky.java.course2.maps.service.EmployeeNotFoundException;
+import pro.sky.java.course2.maps.service.EmployeeService;
+import pro.sky.java.course2.maps.service.ServiceException;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -41,8 +42,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public List<Employee> listEmployees() {
-        return employeeService.getEmployees();
+    public Collection<Employee> listEmployees() {
+        return employeeService.getEmployees().values();
     }
 
     @ExceptionHandler(ServiceException.class)

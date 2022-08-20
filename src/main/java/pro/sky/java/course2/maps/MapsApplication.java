@@ -1,4 +1,4 @@
-package pro.sky.java.course2.lists;
+package pro.sky.java.course2.maps;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
